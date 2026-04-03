@@ -1,0 +1,11 @@
+OrderID,Product,Region,Date,Quantity,Price
+1,Laptop,North,2024-01-01,2,800
+2,Phone,South,2024-02-01,5,500
+3,Tablet,East,2024-03-01,3,300
+4,Headphones,West,2024-04-01,4,100
+5,Laptop,North,2024-05-01,1,850
+6,Phone,South,2024-06-01,6,520
+7,Tablet,East,2024-07-01,2,310
+8,Laptop,West,2024-08-01,3,830
+9,Headphones,North,2024-09-01,4,120
+10,Phone,South,2024-10-01,5,510
