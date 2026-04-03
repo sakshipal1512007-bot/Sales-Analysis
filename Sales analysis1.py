@@ -33,6 +33,13 @@ average_order_value = df.groupby("OrderID")["Revenue"].sum().mean()
 top_regions = df.groupby("Region")["Revenue"].sum().sort_values(ascending=False)
 top_products = df.groupby("Product")["Revenue"].sum().sort_values(ascending=False)
 
+# Print KPIs
+print("\n📊 KPI Summary")
+print(f"Total Revenue: {total_revenue:,.2f}")
+print(f"Average Order Value: {average_order_value:,.2f}")
+print("\nTop Regions:\n", top_regions)
+print("\nTop Products:\n", top_products)
+
 # Seasonality
 df["Month"] = df["Date"].dt.to_period("M")
 monthly_sales = df.groupby("Month")["Revenue"].sum()
@@ -52,32 +59,4 @@ plt.xticks(rotation=45)
 plt.grid(True, linestyle="--", alpha=0.7)
 plt.tight_layout()
 plt.savefig("monthly_trend.png", dpi=300)
-plt.close()
-
-# Top Products
-plt.figure(figsize=(10,6))
-ax = top_products.head(10).plot(kind="bar", color=sns.color_palette("coolwarm", 10))
-plt.title("Top 10 Products by Revenue", fontsize=16, fontweight="bold")
-plt.ylabel("Revenue", fontsize=12)
-plt.xticks(rotation=45)
-for p in ax.patches:
-    ax.annotate(f"{p.get_height():,.0f}", (p.get_x() + p.get_width()/2., p.get_height()),
-                ha="center", va="bottom", fontsize=10, color="black", xytext=(0,5), textcoords="offset points")
-plt.tight_layout()
-plt.savefig("top_products.png", dpi=300)
-plt.close()
-
-# Top Regions
-plt.figure(figsize=(10,6))
-ax = top_regions.head(10).plot(kind="bar", color=sns.color_palette("Spectral", 10))
-plt.title("Top Regions by Revenue", fontsize=16, fontweight="bold")
-plt.ylabel("Revenue", fontsize=12)
-plt.xticks(rotation=45)
-for p in ax.patches:
-    ax.annotate(f"{p.get_height():,.0f}", (p.get_x() + p.get_width()/2., p.get_height()),
-                ha="center", va="bottom", fontsize=10, color="black", xytext=(0,5), textcoords="offset points")
-plt.tight_layout()
-plt.savefig("top_regions.png", dpi=300)
-plt.close()
-
-print("✅ Clean attractive charts saved as PNG files: monthly_trend.png, top_products.png, top_regions.png")
+plt.close
